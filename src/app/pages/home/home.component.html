@@ -1,0 +1,120 @@
+    <!-- Hero Section -->
+    <section class="hero-section text-center py-5">
+        <div class="container">
+            <h1>Welcome to CourseHub</h1>
+            <p>Explore and enroll in our video courses to enhance your skills.</p>
+            <a href="#courses" class="btn btn-light">Explore Courses</a>
+        </div>
+    </section>
+
+    <!-- Main Section with Courses and Trending Courses -->
+    <div class="container my-5">
+        <div class="row">
+            <!-- Courses Section (Left Side) -->
+            <div class="col-lg-9">
+                <section id="courses" class="main-section">
+                    <h2 class="text-center">Our Courses</h2>
+                    <div class="row">
+                        <!-- Course 1 -->
+                          @for (item of courseLIst(); track $index) { <!--signal value we need to pass as paranthis -->
+                        <div class="col-md-4">
+                            <div class="card mb-3">
+                                <img [src]="item.thumbnailUrl" class="card-img-top" alt="Course 1">
+                                <div class="card-body">
+                                    <h5 class="card-title">{{item.courseName}} </h5>
+                                    <p class="card-text" [title]="item.courseDescription">{{item.courseDescription |slice:0:90 }} ...
+                                    </p> <!-- When we hover then it is showing full data help of title also we can use third party libary ToolTips-->
+                                   <a  data-bs-toggle="modal" (click)="openModel(item.courseId)"  class="btn btn-primary">View Videos</a> 
+                                    <a href="#course-details" class="btn btn-warning text-end">Enroll</a>
+                                </div>
+                            </div> 
+                        </div>
+                    }
+                    </div>
+                </section>
+            </div>
+
+            <!-- Trending Courses Section (Right Side) -->
+            <div class="col-lg-3">
+                <section id="trending" class="trending-section">
+                    <h2 class="text-center">Trending Courses</h2>
+                    <div class="mb-3">
+                        <div class="card">
+                            <img src="https://i.ytimg.com/vi/FDIj5Vklnlc/maxresdefault.jpg" class="card-img-top" alt="Trending Course 1">
+                            <div class="card-body">
+                                <h5 class="card-title">Full Stack Development</h5> 
+                                <a href="#course-details" class="btn btn-dark">Learn More</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <div class="card">
+                            <img src="https://i.ytimg.com/vi/FDIj5Vklnlc/maxresdefault.jpg" class="card-img-top" alt="Trending Course 2">
+                            <div class="card-body">
+                                <h5 class="card-title">Advanced JavaScript</h5> 
+                               
+                                <a href="#course-details" class="btn btn-dark">Learn More</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <div class="card">
+                            <img src="https://i.ytimg.com/vi/FDIj5Vklnlc/maxresdefault.jpg" class="card-img-top" alt="Trending Course 3">
+                            <div class="card-body">
+                                <h5 class="card-title">Machine Learning with Python</h5> 
+                                <a href="#course-details" class="btn btn-dark">Learn More</a>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+
+
+
+    <!-- Footer Section -->
+    <footer class="text-center py-4">
+        <div class="container">
+            <p>&copy; 2024 CourseHub. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- we can do modal open or close 2 way document.getElementId(), @View child -->
+
+    <div class="modal" #courseModal>
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content ">
+
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">Course Videos</h4>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" (click)="closeModel()"></button>
+                </div>
+
+                <!-- Modal body -->
+                
+                <div class="modal-body">
+                   <div class="row">
+                    <div class="col-3">
+                        @for (item of courseVideos; track $index) {
+                        <div class="card">
+                            <!-- <img src="https://i9.ytimg.com/vi_webp/b9ne9HIQWnc/mqdefault.webp?v=66e51264&sqp=COSFkrgG&rs=AOn4CLDwoeJLStcFxYsdP5hL7g7WoDw6WQ" class="card-img-top" alt="Trending Course 3"> -->
+                            <div class="card-body">
+                                
+                                <h6 class="card-title">{{item.videoTitle}}</h6>  
+                            </div>
+                        </div>
+                    }
+                    </div>
+
+                    
+                   </div>
+                </div> 
+            </div>
+        </div>
+    </div>
+
+
+
+   
