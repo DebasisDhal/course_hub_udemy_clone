@@ -1,5 +1,5 @@
 import { Component, ElementRef, inject, Inject, OnInit, signal,ViewChild,viewChild } from '@angular/core';
-import { IApiResponse, ICource, ICourceVideos } from '../model/master.model';
+import { IApiResponse, ICource, ICourceVideos, IEnrolment, User } from '../model/master.model';
 import { MasterservicesService } from '../services/masterservices.service';
 import { SlicePipe } from '@angular/common';
 
@@ -17,10 +17,16 @@ export class HomeComponent implements OnInit{
   courseVideos:ICourceVideos[] =[];
 
   @ViewChild('courseModal') modal:ElementRef | undefined;  // we connect thorough @View child
-  
+  loggedUserData:User = new User();
 
   ngOnInit(): void {
     this.getCourse();
+
+    const localData = localStorage.getItem('learningUser');
+    if(localData != null){
+      const parseData = JSON.parse(localData);
+      this.loggedUserData = parseData;
+    }
   }
 
   openModel(courseId:number){
@@ -52,6 +58,28 @@ export class HomeComponent implements OnInit{
       this.mService.getCourseVi(id).subscribe((res:IApiResponse)=>{
         this.courseVideos = res.data
       })
+    }
+
+    onEnroll(coureseId:number){
+      if(this.loggedUserData.userId == 0){
+        alert("Please Logged in first");
+      }else{
+        const enrolObj: IEnrolment = {
+          courseId:coureseId,
+          enrollmentId:0,
+          enrolledDate:new Date(),
+          userId:this.loggedUserData.userId,
+          isCompleted:false
+        };
+
+        this.mService.onEnrollment(enrolObj).subscribe((res:IApiResponse)=>{
+          if(res.result){
+            alert("Enrollment Sucess")
+          }else{
+            alert(res.result);
+          }
+        })
+      }
     }
   }
   

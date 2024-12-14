@@ -8,16 +8,31 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ms-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="#courses">Courses</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link"  data-bs-toggle="modal"
-                       (click)="modalOpen() " >Register</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" (click)="modalOpen()" data-bs-toggle="modal" >Login</a>
-                </li>
+               
+                @if(loggedUserData.userId ==0){
+                    <li class="nav-item">
+                        <a class="nav-link" href="#courses">Courses</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link"  data-bs-toggle="modal"
+                           (click)="modalOpen() " >Register</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" (click)="modalOpen()" data-bs-toggle="modal" >Login</a>
+                    </li>
+    
+                  }@else{
+                    <li class="nav-item">
+                        <a class="nav-link" [routerLink]="['/my-Cources']">Courses</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link"  data-bs-toggle="modal"
+                           (click)="modalOpen() " >{{loggedUserData.emailId}}</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" (click)="onLogOff()" routerLink="home" data-bs-toggle="modal" >Logoff</a>
+                    </li>
+                  }
                 
             </ul>
         </div>
@@ -79,13 +94,13 @@
                         <form action="#" method="post" class="w-100 mx-auto">
                             <div class="mb-3">
                                 <label for="emailLogin" class="form-label">Email</label>
-                                <input type="email" class="form-control" id="emailLogin" required>
+                                <input type="text" [(ngModel)]="loginObj.userName" name="userName" class="form-control" id="emailLogin" required>
                             </div>
                             <div class="mb-3">
                                 <label for="password" class="form-label">Password</label>
-                                <input type="password" class="form-control" id="password" required>
+                                <input type="password" [(ngModel)]="loginObj.password" name="password" class="form-control" id="password" required>
                             </div>
-                            <button type="submit" class="btn btn-primary">Login</button>
+                            <button type="submit" (click)="onLogin()" class="btn btn-primary">Login</button>
                         </form>
                     </div>
                 </section>

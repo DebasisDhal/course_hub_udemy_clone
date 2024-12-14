@@ -25,7 +25,7 @@
                                     <p class="card-text" [title]="item.courseDescription">{{item.courseDescription |slice:0:90 }} ...
                                     </p> <!-- When we hover then it is showing full data help of title also we can use third party libary ToolTips-->
                                    <a  data-bs-toggle="modal" (click)="openModel(item.courseId)"  class="btn btn-primary">View Videos</a> 
-                                    <a href="#course-details" class="btn btn-warning text-end">Enroll</a>
+                                    <a (click)="onEnroll(item.courseId)" class="btn btn-warning text-end">Enroll</a>
                                 </div>
                             </div> 
                         </div>
