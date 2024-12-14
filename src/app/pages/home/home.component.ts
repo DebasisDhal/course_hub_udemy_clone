@@ -14,7 +14,7 @@ export class HomeComponent implements OnInit{
 
   mService = inject(MasterservicesService);
   courseLIst = signal<ICource[]>([]); //Signal which is introduce in Ang-17 we can store data in api
-  courseVideos:ICourceVideos[] =[];
+  courseVideos:ICourceVideos[] =[];    //Here is the without signal also store
 
   @ViewChild('courseModal') modal:ElementRef | undefined;  // we connect thorough @View child
   loggedUserData:User = new User();
@@ -26,7 +26,10 @@ export class HomeComponent implements OnInit{
     if(localData != null){
       const parseData = JSON.parse(localData);
       this.loggedUserData = parseData;
+      
+      
     }
+    
   }
 
   openModel(courseId:number){
@@ -61,9 +64,11 @@ export class HomeComponent implements OnInit{
     }
 
     onEnroll(coureseId:number){
+      
       if(this.loggedUserData.userId == 0){
         alert("Please Logged in first");
       }else{
+        console.log(this.loggedUserData.userId);
         const enrolObj: IEnrolment = {
           courseId:coureseId,
           enrollmentId:0,

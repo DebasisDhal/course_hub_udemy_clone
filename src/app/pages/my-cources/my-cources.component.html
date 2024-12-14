@@ -1,1 +1,62 @@
-<h1>My Lorem ipsum dolor sit amet consectetur, adipisicing elit. Minima debitis tempore, at molestiae, maxime aut, assumenda aliquid quia in esse neque ullam! Delectus enim reiciendis, rem error quia veniam pariatur!</h1>
+    
+    <!-- Main Section with Courses and Trending Courses -->
+    <div class="container my-5">
+        <div class="row">
+    <!-- Courses Section (Left Side) -->
+            <div class="col-lg-9">
+                <section id="courses" class="main-section">
+                    <h2 class="text-center">My Courses</h2>
+                    <div class="row">
+                        <!-- Course 1 -->
+                          @for (item of courseList; track $index) { <!--signal value we need to pass as paranthis -->
+                        <div class="col-md-4">
+                            <div class="card mb-3">
+                                <img [src]="item.thumbnailUrl" class="card-img-top" alt="Course 1">
+                                <div class="card-body">
+                                    <h5 class="card-title">{{item.courseName}} </h5>
+                                    <p class="card-text" [title]="item.courseDescription">{{item.courseDescription |slice:0:90 }} ...
+                                    </p> <!-- When we hover then it is showing full data help of title also we can use third party libary ToolTips-->
+                                   
+                                    <a (click)="navigatingToCourse(item.courseId)" routerLinkActive="router-link-active" class="btn btn-primary text-end">Start Learning</a>
+                                </div>
+                            </div> 
+                        </div>
+                    }
+                    </div>
+                </section>
+            </div> <!-- Trending Courses Section (Right Side) -->
+            <div class="col-lg-3">
+                <section id="trending" class="trending-section">
+                    <h2 class="text-center">Trending Courses</h2>
+                    <div class="mb-3">
+                        <div class="card">
+                            <img src="https://i.ytimg.com/vi/FDIj5Vklnlc/maxresdefault.jpg" class="card-img-top" alt="Trending Course 1">
+                            <div class="card-body">
+                                <h5 class="card-title">Full Stack Development</h5> 
+                                <a href="#course-details" class="btn btn-dark">Learn More</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <div class="card">
+                            <img src="https://i.ytimg.com/vi/FDIj5Vklnlc/maxresdefault.jpg" class="card-img-top" alt="Trending Course 2">
+                            <div class="card-body">
+                                <h5 class="card-title">Advanced JavaScript</h5> 
+                               
+                                <a href="#course-details" class="btn btn-dark">Learn More</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <div class="card">
+                            <img src="https://i.ytimg.com/vi/FDIj5Vklnlc/maxresdefault.jpg" class="card-img-top" alt="Trending Course 3">
+                            <div class="card-body">
+                                <h5 class="card-title">Machine Learning with Python</h5> 
+                                <a href="#course-details" class="btn btn-dark">Learn More</a>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>

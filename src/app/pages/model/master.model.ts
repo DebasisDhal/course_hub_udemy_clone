@@ -76,3 +76,33 @@ export class IEnrolment {
         this.userId = 0;
     }
 }
+
+export interface IEnrolments {
+    courseId: number
+    enrolledDate: string
+    enrollmentId: number
+    isCompleted: boolean
+    userId: number
+    courseName: string
+    courseDescription: string
+    thumbnailUrl: string
+  }
+
+  export class Video{
+    videoTitle: string
+    videoId: number
+    videoUrl: String
+    videoDescription: string
+    videoThumbnail: string
+    totalDuration: string
+
+    constructor(){
+        this.videoTitle="";
+        this.videoId=0;
+        this.videoUrl="";
+        this.videoDescription="";
+        this.videoThumbnail="";
+        this.totalDuration="";
+
+    }
+  }

@@ -28,4 +28,7 @@ export class MasterservicesService {
   onEnrollment(obj:IEnrolment):Observable<IApiResponse>{
     return this.http.post<IApiResponse>(this.baseUrl+"CreateNewEnrollment",obj);
   }
+  getEnrollmentByCourseUserId(userId:number):Observable<IApiResponse>{
+    return this.http.get<IApiResponse>(this.baseUrl+"GetEnrolledCourseByUserId?userid="+userId);
+  }
 }
