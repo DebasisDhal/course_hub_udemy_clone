@@ -5,6 +5,10 @@ Various new Features of Angular I use this project =>
 # signal, @view child, local Storage, slice pipe, open/close modal, @for, model like interface,class, get/post Api, Normal Routing
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.2.2.
+![image](https://github.com/user-attachments/assets/ca129883-29f7-4dcf-88e3-07bdaffad040)
+![image](https://github.com/user-attachments/assets/3df384f8-4c29-4ee4-861d-e98fc79aa211)
+
+
 
 ## Development server
 
